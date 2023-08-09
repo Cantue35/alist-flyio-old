@@ -1,8 +1,8 @@
-# Alist on Fly.io
+# AList on Fly.io
 ## Status
 [![Fly Deploy cd](https://github.com/Cantue35/alist-flyio/actions/workflows/main.yml/badge.svg)](https://github.com/Cantue35/alist-flyio/actions/workflows/main.yml)
 ## Overview
-Deploy [Alist](https://github.com/Xhofe/alist) on [Fly.io](https://fly.io) platform.
+Deploy [AList](https://github.com/alist-org/alist) on [Fly.io](https://fly.io) platform.
 
 Features: Completely avoid ban permissions (Netherlands 🇳🇱, Amsterdam), comes with CDN.
 
