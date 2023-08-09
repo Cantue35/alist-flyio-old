@@ -1,5 +1,6 @@
+#!/bin/bash
 
-# 创建配置文件目录
+# Create configuration directory
 mkdir -p /opt/alist/data/
 
 cat >/opt/alist/data/config.json <<EOF
