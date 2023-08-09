@@ -22,8 +22,10 @@ Features: Completely avoid ban permissions (Netherlands 🇳🇱, Amsterdam), co
 3. Push the code to trigger deployment. Additionally, automatic deployment is set for the 3rd day of each month at 8 AM (UTC).
 
    
-## FAQ
-What is will be the username and password?
-Its mentioned in the [AList Docs](https://alist.nn.ci/guide/install).
+## FAQ & Links
+What is will be the username and password? 
+&emsp; It's mentioned in the [AList Docs](https://alist.nn.ci/guide/install).
+
+[docker.md](https://github.com/Cantue35/alist-flyio/blob/main/docker.md) &emsp;&emsp;&emsp;|&emsp;&emsp;&emsp; [scripts.md](https://github.com/Cantue35/alist-flyio/blob/main/scripts.md)
 
 If you have any questions or need assistance with specific parts of the deployment process, feel free to ask!
