@@ -12,7 +12,6 @@ env:
   SQLHOST: ${{ secrets.SQLHOST }}
   SQLPORT: ${{ secrets.SQLPORT }}
   SQLNAME: ${{ secrets.SQLNAME }}
-  FLYCTL_INSTALL: $HOME/flyctl
 jobs:
   deploy:
     name: Deploy app
@@ -22,8 +21,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Set up flyctl PATH
         run: |
-          echo "export PATH=\"\$FLYCTL_INSTALL/bin:\$PATH\"" >> $HOME/.bashrc
-          source $HOME/.bashrc
+          export FLYCTL_INSTALL="$HOME/flyctl"
+          export PATH="$FLYCTL_INSTALL/bin:$PATH"
       - name: Install flyctl
         run: |
           sh -c "$(curl -L https://fly.io/install.sh)"
