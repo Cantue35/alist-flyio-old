@@ -12,7 +12,7 @@ env:
   SQLHOST: ${{ secrets.SQLHOST }}
   SQLPORT: ${{ secrets.SQLPORT }}
   SQLNAME: ${{ secrets.SQLNAME }}
-  FLYCTL_INSTALL: /usr/local
+  FLYCTL_INSTALL: $HOME/flyctl
 jobs:
   deploy:
     name: Deploy app
