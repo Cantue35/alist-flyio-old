@@ -1,55 +1,64 @@
-### The GitHub Actions workflow does the following steps:
-1. Defines the name of the workflow as "Fly Deploy cd."
+# GitHub Actions Workflow and Deployment Scripts
 
-2. Specifies the events that triggers the workflow: `push` events and a scheduled event every month on the 3rd day at 8 AM (UTC).
+## GitHub Actions Workflow (`main.yml`):
 
-3. Sets environment variables using GitHub secrets for various configuration values.
+The GitHub Actions workflow leads the deployment process with the following key steps:
 
-4. Defines a job named "deploy" that runs on an `ubuntu-latest` runner.
+1. Workflow Identification:
+   - Defines the workflow's name as "flyctl deploy".
 
-5. The steps in the job include:
-<br> Checking out the repository using the `actions/checkout` action.
-<br> Running the `deploy.sh` script using the `sh` command.
+2. Trigger Specification:
+   - Triggers the workflow on `push` events and schedules a monthly event on the 4th day at 8 AM (UTC).
 
+3. Secret-based Environment Setup:
+   - Sets crucial configuration values as environment variables using GitHub secrets.
 
+4. Deployment Job Definition:
+   - Configures a job named "deploy" running on an `ubuntu-latest` runner.
 
-#
-#
-### alist.sh script performs the following actions:
+5. Job Execution Steps:
+   - Utilizes the `actions/checkout` action to retrieve the repository.
+   - Executes the `deploy.sh` script using the `sh` command.
 
-1. Creates a directory named `/opt/alist/data/` to store configuration files.
+## alist.sh Script:
 
-2. Generates a configuration file named `config.json` in the `/opt/alist/data/` directory with the provided configuration settings.
+The `alist.sh` script leads the setup and execution of your AList application:
 
-3. Changes the working directory to `/opt/alist`
+1. Configuration Directory Creation:
+   - Creates a directory `/opt/alist/data/` for storing configuration files.
 
-4. Executes the `alist` application using the generated `config.json` file.
+2. Configuration File Generation:
+   - Generates a `config.json` file with provided configuration settings in the `/opt/alist/data/` directory.
 
-* Before running this script, make sure you have the necessary values (`$DATABASE`, `$SQLUSER`, `$SQLPASSWORD`, `$SQLHOST`, `$SQLPORT`, `$SQLNAME`) defined in your environment variables.
+3. Working Directory Change:
+   - Shifts the current working directory to `/opt/alist`.
 
+4. Application Execution:
+   - Launches the `alist` application using the generated `config.json` file.
 
+* Precaution: Before running the script, ensure that environment variables (`$DATABASE`, `$SQLUSER`, `$SQLPASSWORD`, `$SQLHOST`, `$SQLPORT`, `$SQLNAME`) are defined with appropriate values.
 
+## deploy.sh Script:
 
-#
-#
-### deploy.sh script performs the following actions:
+The `deploy.sh` script leads the Fly.io deployment process:
 
-1. Checks if the Fly CLI is installed and installs it if not.
+1. Fly CLI Check and Installation:
+   - Checks for Fly CLI presence and installs it if not found.
 
-2. Checks if `APP_NAME` is specified as a secret in the GitHub repository.
+2. App Existence Check and Creation:
+   - Checks for `APP_NAME` secret and app existence, creating the app if not present.
 
-3. Checks if the Fly.io app exists, and if not, creates it using the specified `APP_NAME`
+3. Configuration File Creation:
+   - Creates a `fly.toml` configuration file for Fly.io.
 
-4. Creates a `fly.toml` configuration file for Fly.io
+4. Secret and Region Setup:
+   - Sets secrets and regional preferences for the app using Fly CLI.
 
-5. Sets secrets and regions for the app using Fly CLI.
+5. Background Deployment:
+   - Executes the app deployment using the Fly CLI with the `--detach` flag, allowing deployment in the background.
 
-6. Deploys the app using the Fly CLI with the `--detach` flag to run the deployment in the background.
+* Automation Goal: This script streamlines the deployment process, ensuring that your AList app is efficiently deployed on Fly.io using provided configurations and secrets.
 
-* This script is designed to automate the deployment process, ensuring that your AList application is deployed to Fly.io using the provided configuration and secrets.
+## Feel Free to Reach Out:
 
-
-
-#
-#
-#### If you have any questions or need further assistance, feel free to ask!
+If you have any inquiries or require additional assistance, don't hesitate to ask.
