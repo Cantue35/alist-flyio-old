@@ -5,6 +5,10 @@ REGION="ams"
 # Debugging: Print the current PATH
 echo "Current PATH: $PATH"
 
+# Set the correct path for flyctl installation
+export FLYCTL_INSTALL="$HOME/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
 # Debugging: Print the list of files in the installation directory
 ls -la $FLYCTL_INSTALL/bin
 
