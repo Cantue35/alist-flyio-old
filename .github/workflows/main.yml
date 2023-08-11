@@ -24,8 +24,6 @@ jobs:
         run: |
           echo "export PATH=\"\$FLYCTL_INSTALL/bin:\$PATH\"" >> $HOME/.bashrc
           source $HOME/.bashrc
-      - name: Print PATH
-        run: echo "PATH: $PATH"
       - name: Install flyctl
         run: |
           sh -c "$(curl -L https://fly.io/install.sh)"
