@@ -3,6 +3,9 @@
 # Create data directory
 mkdir -p /opt/alist/data/
 
+# Set the correct permissions for the data directory
+chmod +rx /opt/alist/data
+
 # Create configuration file
 cat >/opt/alist/data/config.json <<EOF
 {
