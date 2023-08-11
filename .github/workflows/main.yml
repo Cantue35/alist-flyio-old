@@ -19,13 +19,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Set up flyctl PATH
-        run: |
-          export FLYCTL_INSTALL="$HOME/.fly"
-          export PATH="$FLYCTL_INSTALL/bin:$PATH"
       - name: Install flyctl
         run: |
-          sh -c "$(curl -L https://fly.io/install.sh)"
+          curl -L https://fly.io/install.sh | sh
+          export FLYCTL_INSTALL="$HOME/.fly"
+          export PATH="$FLYCTL_INSTALL/bin:$PATH"
           flyctl version  # Add this line to verify installation
       - name: Verify flyctl installation
         run: |
