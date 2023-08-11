@@ -20,12 +20,8 @@ if ! command -v flyctl >/dev/null 2>&1; then
     curl -L https://fly.io/install.sh | FLYCTL_INSTALL="$HOME/.fly" sh
 fi
 
-# Get the APP_NAME from Repository Secrets
-APP_NAME="${{ secrets.APP_NAME }}"
-
-if [ -z "${APP_NAME}" ]; then
-    printf '\e[31mError: APP_NAME not specified.\n\e[0m' && exit 1
-fi
+# Get the APP_NAME from environment variables passed by the workflow
+APP_NAME="${APP_NAME:-$FLY_APP_NAME}"
 
 # Debugging: Print the resolved APP_NAME
 echo "Resolved APP_NAME: $APP_NAME"
