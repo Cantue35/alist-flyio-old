@@ -21,8 +21,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Set up flyctl PATH
         run: |
-          echo "export PATH=\"$HOME/.fly/bin:\$PATH\"" >> $HOME/.bashrc
+          echo "export FLYCTL_INSTALL=\"$HOME/.fly\"" >> $HOME/.bashrc
+          echo "export PATH=\"\$FLYCTL_INSTALL/bin:\$PATH\"" >> $HOME/.bashrc
           source $HOME/.bashrc
+      - name: Print PATH
+        run: echo "PATH: $PATH"
       - name: Deploy
         run: |
           sh ./deploy.sh
