@@ -1,6 +1,7 @@
 #!/bin/sh
 
 REGION="ams"
+TMP_DIR="/tmp/flytmp"  # Temporary directory
 
 if ! command -v flyctl >/dev/null 2>&1; then
     printf '\e[33mProgress 1/5: Installing Fly.io CLI.\n\e[0m'
@@ -11,13 +12,13 @@ if [ -z "${APP_NAME}" ]; then
     printf '\e[31mError: APP_NAME not specified.\n\e[0m' && exit 1
 fi
 
-flyctl info --app "${APP_NAME}" >/tmp/${APP_NAME} 2>&1;
-if [ "$(cat /tmp/${APP_NAME} | grep -o "Could not resolve App")" = "Could not resolve App" ]; then
+flyctl info --app "${APP_NAME}" >"${TMP_DIR}/${APP_NAME}" 2>&1;
+if [ "$(grep -o "Could not resolve App" "${TMP_DIR}/${APP_NAME}")" = "Could not resolve App" ]; then
     printf '\e[33mProgress 2/5: Creating app\n\e[0m'
     flyctl apps create "${APP_NAME}" >/dev/null 2>&1;
 
-    flyctl info --app "${APP_NAME}" >/tmp/${APP_NAME} 2>&1;
-    if [ "$(cat /tmp/${APP_NAME} | grep -o "Could not resolve App")" != "Could not resolve App" ]; then
+    flyctl info --app "${APP_NAME}" >"${TMP_DIR}/${APP_NAME}" 2>&1;
+    if [ "$(grep -o "Could not resolve App" "${TMP_DIR}/${APP_NAME}")" != "Could not resolve App" ]; then
         printf '\e[32mApp created successfully\n\e[0m'
     else
         printf '\e[31mError: App creation failed\n\e[0m' && exit 1
@@ -67,7 +68,7 @@ flyctl secrets set SQLPASSWORD="${SQLPASSWORD}"
 flyctl secrets set SQLHOST="${SQLHOST}"
 flyctl secrets set SQLPORT="${SQLPORT}"
 flyctl secrets set SQLNAME="${SQLNAME}"
-flyctl regions set ${REGION}
+flyctl regions set "${REGION}"
 printf '\e[32mProgress 5/5: Deploying\n\e[0m'
 flyctl deploy --detach
-# flyctl status --app ${APP_NAME}
+# flyctl status --app "${APP_NAME}"
