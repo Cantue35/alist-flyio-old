@@ -27,12 +27,12 @@ APP_NAME="${APP_NAME:-$FLY_APP_NAME}"
 echo "Resolved APP_NAME: $APP_NAME"
 
 flyctl info --app "${APP_NAME}" >/tmp/${APP_NAME} 2>&1;
-if [ "$(grep -o "Could not resolve App" "${TMP_DIR}/${APP_NAME}")" = "Could not resolve App" ]; then
+if [ "$(grep -o "Could not resolve App" "/tmp/${APP_NAME}")" = "Could not resolve App" ]; then
     printf '\e[33mProgress 2/5: Creating app\n\e[0m'
     flyctl apps create "${APP_NAME}" >/dev/null 2>&1;
 
     flyctl info --app "${APP_NAME}" >/tmp/${APP_NAME} 2>&1;
-    if [ "$(grep -o "Could not resolve App" "${TMP_DIR}/${APP_NAME}")" != "Could not resolve App" ]; then
+    if [ "$(grep -o "Could not resolve App" "/tmp/${APP_NAME}")" != "Could not resolve App" ]; then
         printf '\e[32mApp created successfully\n\e[0m'
     else
         printf '\e[31mError: App creation failed\n\e[0m' && exit 1

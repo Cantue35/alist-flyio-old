@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Create configuration directory
+# Create data directory
 mkdir -p /opt/alist/data/
 
+# Create configuration file
 cat >/opt/alist/data/config.json <<EOF
 {
   "address": "0.0.0.0",
@@ -30,5 +31,6 @@ cat >/opt/alist/data/config.json <<EOF
 }
 EOF
 
+# Run AList
 cd /opt/alist
 ./alist -conf data/config.json
