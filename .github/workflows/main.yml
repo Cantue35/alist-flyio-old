@@ -26,11 +26,11 @@ jobs:
       - name: Install flyctl
         run: |
           sh -c "$(curl -L https://fly.io/install.sh)"
+          flyctl version  # Add this line to verify installation
       - name: Verify flyctl installation
         run: |
           echo "PATH: $PATH"
           ls -la $FLYCTL_INSTALL/bin
-          flyctl version
       - name: Deploy
         run: |
           sh ./deploy.sh
