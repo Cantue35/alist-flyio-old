@@ -19,7 +19,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Print PATH
+        run: |
+          echo "Original PATH: $PATH"
+          echo "Contents of /usr/local/bin:"
+          ls -la /usr/local/bin
+          echo "Contents of /usr/bin:"
+          ls -la /usr/bin
       - name: Deploy
         run: |
           export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/share"
+          echo "Updated PATH: $PATH"
           sh ./deploy.sh
