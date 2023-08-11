@@ -37,3 +37,9 @@ Deploy [AList](https://github.com/alist-org/alist) on the [Fly.io](https://fly.i
    - [In-depth Explanation of Scripts](https://github.com/Cantue35/alist-flyio/blob/main/scripts.md)
 
 If you have any questions or require assistance at any step of the deployment process, don't hesitate to reach out. For quick answers to common queries, be sure to check the [AList FAQ](https://alist.nn.ci/faq/) section.
+
+## Found this Repository Useful?
+
+If you found this repository helpful, please consider giving it a star! ⭐ Your support is greatly appreciated and encourages me to continue improving and maintaining this project and projects like this.
+
+[![Star this repository](https://img.shields.io/github/stars/Cantue35/alist-flyio.svg?style=social)](https://github.com/Cantue35/alist-flyio/stargazers)
