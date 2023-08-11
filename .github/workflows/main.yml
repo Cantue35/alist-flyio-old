@@ -19,10 +19,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Find flyctl Path
-        run: |
-          which flyctl
-
       - name: Deploy
         run: |
+          export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/share"
           sh ./deploy.sh
