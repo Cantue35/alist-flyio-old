@@ -1,11 +1,19 @@
 #!/bin/sh
 
 REGION="ams"
-TMP_DIR="/tmp/flytmp"  # Temporary directory
+
+# Debugging: Print the current PATH
+echo "Current PATH: $PATH"
+
+# Debugging: Print the list of files in the installation directory
+ls -la $FLYCTL_INSTALL/bin
+
+# Debugging: Print the version of flyctl (if available)
+flyctl version || echo "flyctl command not found"
 
 if ! command -v flyctl >/dev/null 2>&1; then
     printf '\e[33mProgress 1/5: Installing Fly.io CLI.\n\e[0m'
-    curl -L https://fly.io/install.sh | FLYCTL_INSTALL=/usr/local sh
+    curl -L https://fly.io/install.sh | FLYCTL_INSTALL="$HOME/.fly" sh
 fi
 
 if [ -z "${APP_NAME}" ]; then
