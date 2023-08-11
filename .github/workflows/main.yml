@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install flyctl
+        run: |
+          curl -L https://fly.io/install.sh | sh
       - name: Deploy
         run: |
           sh ./deploy.sh
