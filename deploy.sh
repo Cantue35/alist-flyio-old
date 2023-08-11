@@ -21,7 +21,7 @@ if ! command -v flyctl >/dev/null 2>&1; then
 fi
 
 # Get the APP_NAME from Repository Secrets
-APP_NAME="${{ APP_NAME }}"
+APP_NAME="${{ secrets.APP_NAME }}"
 
 if [ -z "${APP_NAME}" ]; then
     printf '\e[31mError: APP_NAME not specified.\n\e[0m' && exit 1
